@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL
+// ודא שקיים משתנה סביבה כזה ב-Vercel וב-.env המקומי שלך
+const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 const CallToActionSection = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const CallToActionSection = () => {
     phone: "",
     email: "",
     zip: "",
+    message: "",
   });
 
   const [status, setStatus] = useState("");
@@ -23,7 +25,15 @@ const CallToActionSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!GOOGLE_SCRIPT_URL) {
+      console.error("GOOGLE_SCRIPT_URL is not defined");
+      setStatus("❌ Missing script URL");
+      return;
+    }
+
     setStatus("Sending...");
+    console.log("Sending to:", GOOGLE_SCRIPT_URL); // Debugging URL
 
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
@@ -38,17 +48,18 @@ const CallToActionSection = () => {
 
       if (response.ok) {
         setStatus("✅ Sent successfully!");
-        setFormData({ name: "", phone: "", email: "", zip: "" });
+        setFormData({ name: "", phone: "", email: "", zip: "", message: "" });
       } else {
-        throw new Error();
+        throw new Error("Response not OK");
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       setStatus("❌ Failed to send");
     }
   };
 
   return (
-    <section className="py-16  bg-[#f7f5e9]" id="cta">
+    <section className="py-16 bg-[#f7f5e9]" id="cta">
       <div className="container mx-auto px-4 max-w-md">
         <motion.form
           onSubmit={handleSubmit}
@@ -67,8 +78,8 @@ const CallToActionSection = () => {
             onChange={handleChange}
             type="text"
             placeholder="Full Name *"
-            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
             required
+            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
           />
           <input
             name="phone"
@@ -76,8 +87,8 @@ const CallToActionSection = () => {
             onChange={handleChange}
             type="tel"
             placeholder="Phone Number *"
-            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
             required
+            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
           />
           <input
             name="email"
@@ -85,8 +96,8 @@ const CallToActionSection = () => {
             onChange={handleChange}
             type="email"
             placeholder="Email Address *"
-            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
             required
+            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
           />
           <input
             name="zip"
@@ -94,8 +105,16 @@ const CallToActionSection = () => {
             onChange={handleChange}
             type="text"
             placeholder="ZIP Code *"
-            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
             required
+            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
+          />
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="How can we help you?"
+            rows="3"
+            className="rounded-md px-4 py-3 bg-white/90 text-black font-medium placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-[#EAAA00]"
           />
           <button
             type="submit"
