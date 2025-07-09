@@ -1,48 +1,14 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Paper } from "@mui/material";
 import roofingVideo from "../assets/roofing-video.mp4";
+import ModalForm from "./ModalForm";
 
 // שלח לשרת שלך (API משלך)
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/contact";
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:3000/api/contact";
 
 const HeroSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    zip: "",
-  });
-
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setStatus("✅ Sent successfully!");
-        setFormData({ name: "", phone: "", email: "", zip: "" });
-      } else {
-        throw new Error();
-      }
-    } catch {
-      setStatus("❌ Failed to send");
-    }
-  };
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
@@ -116,87 +82,24 @@ const HeroSection = () => {
           >
             GET <b>FREE</b> OFFER NOW
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
+          <Button
+            variant="contained"
+            size="large"
             sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
+              mt: 2,
+              fontWeight: "bold",
+              bgcolor: "#FFC940",
+              color: "#222",
+              "&:hover": { bgcolor: "#e6b800" },
             }}
+            fullWidth
+            onClick={() => setModalOpen(true)}
           >
-            <TextField
-              name="name"
-              label="Full Name"
-              variant="filled"
-              fullWidth
-              required
-              value={formData.name}
-              onChange={handleChange}
-              InputProps={{ style: { background: "rgba(255,255,255,0.85)" } }}
-            />
-            <TextField
-              name="phone"
-              label="Phone Number"
-              variant="filled"
-              fullWidth
-              required
-              value={formData.phone}
-              onChange={handleChange}
-              InputProps={{ style: { background: "rgba(255,255,255,0.85)" } }}
-            />
-            <TextField
-              name="email"
-              label="Email Address"
-              variant="filled"
-              fullWidth
-              required
-              value={formData.email}
-              onChange={handleChange}
-              InputProps={{ style: { background: "rgba(255,255,255,0.85)" } }}
-            />
-            <TextField
-              name="zip"
-              label="ZIP Code"
-              variant="filled"
-              fullWidth
-              required
-              value={formData.zip}
-              onChange={handleChange}
-              InputProps={{ style: { background: "rgba(255,255,255,0.85)" } }}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              size="large"
-              sx={{
-                mt: 2,
-                fontWeight: "bold",
-                bgcolor: "#FFC940",
-                color: "#222",
-                "&:hover": { bgcolor: "#e6b800" },
-              }}
-              fullWidth
-            >
-              CONTACT US
-            </Button>
-            {status && (
-              <Typography
-                variant="body2"
-                align="center"
-                sx={{
-                  mt: 1,
-                  fontWeight: "bold",
-                  color: status.includes("✅") ? "lightgreen" : "red",
-                }}
-              >
-                {status}
-              </Typography>
-            )}
-          </Box>
+            CONTACT US
+          </Button>
         </Paper>
       </Box>
+      <ModalForm open={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 };
