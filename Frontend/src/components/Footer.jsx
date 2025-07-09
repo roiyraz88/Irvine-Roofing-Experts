@@ -10,9 +10,7 @@ const Footer = () => (
 
       <div className="flex-1 flex flex-col items-center text-center">
         <div className="flex gap-8 text-base font-semibold justify-center mb-2">
-          <a href="#about" className="hover:text-white transition">About</a>
-          <a href="#faq" className="hover:text-white transition">FAQ</a>
-          <a href="#cta" className="hover:text-white transition">Contact</a>
+          <a href="/about" className="hover:text-white transition">About</a>
         </div>
         <div className="text-sm text-black">
           <div className="font-semibold">1234 Main St, Irvine, CA</div>

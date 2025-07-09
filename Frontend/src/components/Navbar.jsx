@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/navbar-image.png";
 import { services } from "./ServiceGridServices";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -15,8 +16,6 @@ const Navbar = () => {
             <img src={logo} alt="Total Roofing Logo" className="h-14 w-auto" />
           </a>
         </div>
-
-        {/* Hamburger Icon */}
         <button
           className="md:hidden flex items-center px-2 py-1 text-[#1A2E25] focus:outline-none"
           onClick={() => setMobileMenuOpen((open) => !open)}
@@ -75,42 +74,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <a
-            href="#about"
+          <Link
+            to="/about"
             className="hover:bg-[#FFD966] rounded px-3 py-1 transition-colors flex items-center gap-1"
           >
             ABOUT US
-          </a>
-          <a
-            href="#contact"
-            className="hover:bg-[#FFD966] rounded px-3 py-1 transition-colors"
-          >
-            CONTACT
-          </a>
-        </div>
-
-        {/* CTA and Phone (Desktop) */}
-        <div className="hidden md:flex items-center gap-6">
-          <button className="bg-[#D6A12D] text-[#222] font-bold rounded-md px-8 py-3 text-lg shadow-sm hover:bg-[#b88a22] transition-colors">
-            FREE ESTIMATE
-          </button>
-          <span className="flex items-center gap-2 text-lg font-bold text-[#D6A12D]">
-            <svg
-              width="26"
-              height="26"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="#D6A12D"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2 5.5A2.5 2.5 0 014.5 3h2A2.5 2.5 0 019 5.5v1A2.5 2.5 0 016.5 9h-2A2.5 2.5 0 012 6.5v-1zm0 13A2.5 2.5 0 014.5 21h2A2.5 2.5 0 009 18.5v-1A2.5 2.5 0 016.5 15h-2A2.5 2.5 0 012 17.5v1zm13-13A2.5 2.5 0 0117.5 3h2A2.5 2.5 0 0122 5.5v1A2.5 2.5 0 0119.5 9h-2A2.5 2.5 0 0115 6.5v-1zm0 13A2.5 2.5 0 0117.5 21h2A2.5 2.5 0 0022 18.5v-1A2.5 2.5 0 0119.5 15h-2A2.5 2.5 0 0115 17.5v1z"
-              />
-            </svg>
-            {/* <span>888-841-7663</span> */}
-          </span>
+          </Link>
         </div>
       </div>
 
@@ -147,40 +116,13 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <a
-              href="#about"
+            <Link
+              to="/about"
               className="w-full px-3 py-2 rounded hover:bg-[#FFD966] font-semibold text-[#1A2E25] text-left"
               onClick={() => setMobileMenuOpen(false)}
             >
               ABOUT US
-            </a>
-            <a
-              href="#contact"
-              className="w-full px-3 py-2 rounded hover:bg-[#FFD966] font-semibold text-[#1A2E25] text-left"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              CONTACT
-            </a>
-            <button className="w-full mt-2 bg-[#D6A12D] text-[#222] font-bold rounded-md px-8 py-3 text-lg shadow-sm hover:bg-[#b88a22] transition-colors">
-              FREE ESTIMATE
-            </button>
-            <span className="flex items-center gap-2 text-lg font-bold text-[#D6A12D] justify-center mt-2">
-              <svg
-                width="26"
-                height="26"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="#D6A12D"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2 5.5A2.5 2.5 0 014.5 3h2A2.5 2.5 0 019 5.5v1A2.5 2.5 0 016.5 9h-2A2.5 2.5 0 012 6.5v-1zm0 13A2.5 2.5 0 014.5 21h2A2.5 2.5 0 009 18.5v-1A2.5 2.5 0 016.5 15h-2A2.5 2.5 0 012 17.5v1zm13-13A2.5 2.5 0 0117.5 3h2A2.5 2.5 0 0122 5.5v1A2.5 2.5 0 0119.5 9h-2A2.5 2.5 0 0115 6.5v-1zm0 13A2.5 2.5 0 0117.5 21h2A2.5 2.5 0 0022 18.5v-1A2.5 2.5 0 0119.5 15h-2A2.5 2.5 0 0115 17.5v1z"
-                />
-              </svg>
-              <span>888-841-7663</span>
-            </span>
+            </Link>
           </div>
         </div>
       )}

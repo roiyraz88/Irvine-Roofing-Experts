@@ -17,6 +17,7 @@ import ProfessionalMarquee from "./components/ProfessionalMarquee";
 import ServiceGrid from "./components/ServiceGrid";
 import ServicePage from "./components/ServicePage";
 import servicePagesData from "./components/ServicePagesData.js";
+import AboutUsPage from "./components/AboutUsPage";
 
 function App() {
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -45,6 +46,7 @@ function App() {
                 </>
               }
             />
+            <Route path="/about" element={<AboutUsPage />} />
             <Route path="/services/:slug" element={<ServicePageLoader />} />
           </Routes>
         </div>

@@ -39,7 +39,19 @@ const ServicePage = ({
       {/* Description / Details Section */}
       {details && (
         <div className="bg-[#f7f5e9] py-16 px-4 md:px-20 flex flex-col md:flex-row gap-12 items-start">
-          <div className="flex-1 max-w-2xl text-left text-[17px] leading-relaxed space-y-4">
+          {/* Image first on mobile, right on desktop */}
+          {image && (
+            <div className="flex-1 flex justify-center order-1 md:order-2 mb-8 md:mb-0">
+              <img
+                src={image}
+                alt={tagline}
+                className="w-full rounded-lg shadow-xl object-cover aspect-[3/2]"
+                style={{ maxHeight: 300, minHeight: 180, width: "100%" }}
+              />
+            </div>
+          )}
+
+          <div className="flex-1 max-w-2xl text-left text-[17px] leading-relaxed space-y-4 order-2 md:order-1">
             {details.map((item, i) => (
               <div key={i} className="mb-8">
                 <h4 className="text-xl font-bold text-[#163026] mb-2 flex items-center gap-2">
@@ -61,17 +73,6 @@ const ServicePage = ({
               SCHEDULE AN APPOINTMENT
             </button>
           </div>
-
-          {image && (
-            <div className="flex-1 flex justify-center">
-              <img
-                src={image}
-                alt={tagline}
-                className="w-full max-w-xl rounded-lg shadow-xl object-cover"
-                style={{ maxHeight: 400 }}
-              />
-            </div>
-          )}
         </div>
       )}
 
