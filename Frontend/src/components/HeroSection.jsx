@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Paper } from "@mui/material";
-import roofingVideo from "../assets/roofing-video.mp4";
 import ModalForm from "./ModalForm";
 
 // שלח לשרת שלך (API משלך)
@@ -14,7 +13,7 @@ const HeroSection = () => {
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
       <video
         className="absolute inset-0 w-full h-full object-cover z-0"
-        src={roofingVideo}
+        src="/roofing-video.mp4"
         autoPlay
         loop
         muted
