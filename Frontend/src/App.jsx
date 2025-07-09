@@ -18,12 +18,14 @@ import ServiceGrid from "./components/ServiceGrid";
 import ServicePage from "./components/ServicePage";
 import servicePagesData from "./components/ServicePagesData.js";
 import AboutUsPage from "./components/AboutUsPage";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   const [modalOpen, setModalOpen] = React.useState(false);
 
   return (
     <Router>
+      <ScrollToTop /> 
       <div className="bg-white min-h-screen flex flex-col">
         <Navbar />
         <div className="flex-1 flex flex-col">
