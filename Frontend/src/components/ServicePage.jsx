@@ -43,7 +43,6 @@ const ServicePage = ({
             {details.map((item, i) => (
               <div key={i} className="mb-8">
                 <h4 className="text-xl font-bold text-[#163026] mb-2 flex items-center gap-2">
-                  {/* אייקון אם אתה רוצה להוסיף לפי שם */}
                   {item.icon && (
                     <span className="material-icons">{item.icon}</span>
                   )}

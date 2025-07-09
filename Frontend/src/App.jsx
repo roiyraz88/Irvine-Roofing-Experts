@@ -16,7 +16,7 @@ import ModalForm from "./components/ModalForm";
 import ProfessionalMarquee from "./components/ProfessionalMarquee";
 import ServiceGrid from "./components/ServiceGrid";
 import ServicePage from "./components/ServicePage";
-import servicePagesData from "./components/ServicePagesData.json";
+import servicePagesData from "./components/ServicePagesData.js";
 
 function App() {
   const [modalOpen, setModalOpen] = React.useState(false);
