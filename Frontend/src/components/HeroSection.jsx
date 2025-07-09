@@ -19,6 +19,7 @@ const HeroSection = () => {
         loop
         muted
         playsInline
+        preload="auto"
       />
       <div className="absolute inset-0 bg-black/60 z-10" />
       <Box
