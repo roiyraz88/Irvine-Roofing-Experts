@@ -50,7 +50,7 @@ const Marquee = () => {
         Meet the Roofing Stars of Irvine, CA
       </Typography>
       <div className="relative w-full overflow-hidden">
-        <div className="w-[200%] flex gap-8 animate-marquee">
+        <div className="w-[200%] flex gap-8 items-center animate-marquee">
           {fullImageSet.map((src, i) => (
             <div
               key={i}

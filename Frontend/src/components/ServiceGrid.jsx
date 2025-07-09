@@ -36,7 +36,7 @@ const OurServicesGrid = () => {
       className="py-20 px-6 text-center bg-[#f7f5e9]"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: false }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <div className="text-4xl font-bold text-[#0D261F] m-3 pb-10">
@@ -64,9 +64,7 @@ const OurServicesGrid = () => {
                 <div className="text-xl font-bold text-[#0D261F] mb-2 leading-snug">
                   {service.title}
                 </div>
-                <p className="text-gray-700 text-xl">
-                  {service.desc}
-                </p>
+                <p className="text-gray-700 text-xl">{service.desc}</p>
               </div>
             </Link>
           ))}
